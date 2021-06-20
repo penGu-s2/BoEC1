@@ -50,7 +50,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="img-fluid" alt="">
+          <a href="{% url 'productdetail' product.id %}"><img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="img-fluid" alt=""></a>
 
         </div>
         <!--Grid column-->
@@ -74,15 +74,12 @@
             </div>
 
             <p class="lead">
-              <span class="mr-1">
-                <del>$120</del>
-              </span>
-              <span>$100</span>
+              <span>${{product.price}}</span>
             </p>
 
-            <p class="lead font-weight-bold">Description</p>
+            <p class="lead font-weight-bold">{{product.description}}</p>
 
-            <p>Denim shirt</p>
+            <p> {{product.name}}</p>
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
