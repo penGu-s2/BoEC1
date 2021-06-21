@@ -1,5 +1,8 @@
-from django.contrib.auth.models import User
+from __future__ import unicode_literals
 from django.db import models
+import django.utils.safestring as safestring
+from django.conf import settings
+
 
 # Create your models here.
 class Catalog(models.Model):
@@ -24,4 +27,17 @@ class Product(models.Model):
     active=models.BooleanField("active",default=False)
     create_at = models.DateTimeField(auto_now_add=True)
     dateUpdate = models.DateTimeField("dateUpdate",auto_now_add=True, blank=True)
+    image=models.ImageField(upload_to='uploads/%Y/%m/%d/',default='')
+
+    def image_tag(self):    
+        if self.image:
+            return safestring.mark_safe('<img src="%s%s" width="150" height="150" />' % (settings.MEDIA_URL, self.image))
+        else:
+            return ""
+
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
+
+    def __str__(self):
+        return self.name
 

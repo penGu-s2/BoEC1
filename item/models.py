@@ -11,7 +11,6 @@ class Item(models.Model):
     product_id=models.ForeignKey(Product,on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     name=models.CharField("name",max_length=200)
-    
     color = models.CharField("color", max_length=200)
     size = models.CharField("size", max_length=200)
     sellPrice= models.FloatField("sellPrice",default=0)
@@ -21,9 +20,6 @@ class Item(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     dateUpdate = models.DateTimeField("dateUpdate",auto_now_add=True, blank=True)
     
-    
-    def __str__(self):
-        return self.name
     def color_tag(self):
         if self.color is not None:
             return mark_safe('<p style="background-color:{}">Color </p>'.format(self.color))

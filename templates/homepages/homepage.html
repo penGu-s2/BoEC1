@@ -169,6 +169,7 @@
       <!--Section: Products v.3-->
       <section class="text-center mb-4">
 
+        
         <!--Grid row-->
         <div class="row wow fadeIn">
           {% for prod in store_items %}
@@ -180,9 +181,9 @@
 
               <!--Card image-->
               <div class="view overlay">
-                <a href="{% url 'productdetail' product.id %}"><img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                  alt=""></a>
-                <a>
+               <img  src="/media/{{ prod.image }}" class="card-img-top"
+                  alt="">
+                <a href="{% url 'productdetail' prod.id %}">
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>

@@ -12,6 +12,7 @@ class ProdcutGroupAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     list_filter = ('active',)
+    readonly_fields = ('image_tag',)
     list_display = ('id','name','description','price','unit','warranty','active', 'create_at','dateUpdate', )
 
 admin.site.register(Catalog, CategoryAdmin)

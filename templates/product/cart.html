@@ -1,0 +1,84 @@
+{% extends 'homepages/base.html'%}
+{% load static %}
+{% block cssblock %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'homepages/css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'homepages/css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'homepages/css/style.min.css' %}" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+  </style>
+  {% endblock %}
+  {% block content %}
+  <div class = "container centerdv well ">
+    <div>
+              <h3>Total Price: <br> <br><span class="label label-success">{{total_price}}</span></h3>
+    </div>
+    <br>
+    {% for item in cart_items%}
+
+    <div class="media">
+    <a class="pull-left" href="#">
+        <img class="media-object imgscal" src={{item.imglink}} alt="..."/>
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">{{item.name}}</h4>
+        {{item.description}}
+        <span class="badge pull-right">{{item.price}}</span>
+      </div>
+      <form method = "post" action = "remove/">
+          {% csrf_token %}
+          <input type="hidden" name="obj_id" value={{item.id}} />
+      <input type="submit" value = "Remove" class = "btn btn-danger pull-right">
+    </form>
+    </div>
+    {% endfor %}	
+    <button class = "btn btn-primary btn-lg" onclick = "window.location = '/cart/checkout';">Checkout</button>
+</div>
+  {% endblock %} 
+
+  {% block jssblock%}
+  <script type="text/javascript" src="{% static 'homepages/js/jquery-3.4.1.min.js'%}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'homepages/js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'homepages/js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'homepages/js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+  {% endblock %}
+
